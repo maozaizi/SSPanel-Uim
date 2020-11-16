@@ -434,7 +434,7 @@ class AppURI
                         $tls .= '&peer=' . $item['localserver'];
                     }
                 }
-                $return = ('vmess://' . Tools::base64_url_encode('chacha20-poly1305:' . $item['id'] . '@' . $item['add'] . ':' . $item['port']) . '?remarks=' . rawurlencode($item['remark']) . $obfs . $tls);
+                $return = ('vmess://' . Tools::base64_url_encode('auto:' . $item['id'] . '@' . $item['add'] . ':' . $item['port']) . '?remarks=' . rawurlencode($item['remark']) . $obfs . $tls . '&alterId=' . $item['aid']);
                 break;
             case 'trojan':
                 $return  = ('trojan://' . $item['passwd'] . '@' . $item['address'] . ':' . $item['port']);
@@ -478,54 +478,6 @@ class AppURI
                     }
                 }
                 $return .= ('vmess://' . base64_encode('auto:' . $item['id'] . '@' . $item['add'] . ':' . $item['port']) . '?remark=' . rawurlencode($item['remark']) . $network . $protocol . '&aid=' . $item['aid'] . $tls);
-                break;
-        }
-        return $return;
-    }
-
-    public static function getSSDURI(array $item)
-    {
-        $return = null;
-        switch ($item['type']) {
-            case 'ss':
-                # 666
-                $return['remarks']      = $item['remark'];
-                $return['server']       = $item['address'];
-                $return['port']         = $item['port'];
-                $return['encryption']   = $item['method'];
-                $return['password']     = $item['passwd'];
-                $plugin_options         = '';
-                if ($item['obfs'] != 'plain') {
-                    switch ($item['obfs']) {
-                        case 'simple_obfs_http':
-                            $return['plugin'] = 'simple-obfs';
-                            $plugin_options .= 'obfs=http;obfs-host=' . $item['obfs_param'];
-                            break;
-                        case 'simple_obfs_tls':
-                            $return['plugin'] = 'simple-obfs';
-                            $plugin_options .= 'obfs=tls;obfs-host=' . $item['obfs_param'];
-                            break;
-                        case 'v2ray':
-                            $return['plugin'] = 'v2ray';
-                            if ($item['net'] == 'ws') {
-                                $plugin_options .= 'mode=ws';
-                            }
-                            if ($item['tls'] == 'tls') {
-                                $plugin_options .= ';security=tls';
-                            } else {
-                                $plugin_options .= ';security=none';
-                            }
-                            $plugin_options .= ';path=' . $item['path'];
-                            if ($item['host'] != '') {
-                                $plugin_options .= ';host=' . $item['host'];
-                            } else {
-                                $plugin_options .= ';host=' . $item['address'];
-                            }
-                            break;
-                    }
-                }
-                $return['plugin_options'] = $plugin_options;
-                $return['ratio']          = $item['ratio'];
                 break;
         }
         return $return;

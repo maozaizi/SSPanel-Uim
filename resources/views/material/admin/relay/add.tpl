@@ -22,8 +22,6 @@
                                         {/foreach}
                                     </select>
                                 </div>
-
-
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="dist_node">目标节点</label>
                                     <select id="dist_node" class="form-control maxwidth-edit" name="dist_node">
@@ -33,43 +31,23 @@
                                         {/foreach}
                                     </select>
                                 </div>
-
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="port">端口</label>
                                     <input class="form-control maxwidth-edit" id="port" name="port" type="text"
                                            value="0">
                                 </div>
-
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="priority">优先级</label>
                                     <input class="form-control maxwidth-edit" id="priority" name="priority" type="text"
                                            value="0">
                                 </div>
-
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="user_id">用户ID</label>
                                     <input class="form-control maxwidth-edit" id="user_id" name="user_id" type="text"
                                            value="0">
                                 </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="card">
-                        <div class="card-main">
-                            <div class="card-inner">
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-10 col-md-push-1">
-                                            <button id="submit" type="submit"
-                                                    class="btn btn-block btn-brand waves-attach waves-light">添加
-                                            </button>
-                                        </div>
-                                    </div>
+                                <div class="form-group form-group-label">
+                                    <button id="submit" type="submit" class="btn btn-block btn-brand waves-attach waves-light">添加</button>
                                 </div>
                             </div>
                         </div>
@@ -77,15 +55,11 @@
                 </form>
                 {include file='dialog.tpl'}
                 <section>
-
         </div>
-
-
     </div>
 </main>
 
 {include file='admin/footer.tpl'}
-
 
 <script>
     {literal}
@@ -97,7 +71,6 @@
         },
         {/literal}
         submitHandler: () => {
-
             $.ajax({
                 type: "POST",
                 url: "/admin/relay",
@@ -126,7 +99,4 @@
             });
         }
     });
-
 </script>
-
-

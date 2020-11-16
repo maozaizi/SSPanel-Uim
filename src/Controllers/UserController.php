@@ -31,6 +31,7 @@ use App\Models\{
     DetectRule,
     TrafficLog,
     InviteCode,
+    EmailVerify,
     UserSubscribeLog
 };
 use App\Utils\{
@@ -38,6 +39,7 @@ use App\Utils\{
     Pay,
     URL,
     Hash,
+    Check,
     QQWry,
     Tools,
     Radius,
@@ -58,7 +60,7 @@ class UserController extends BaseController
 {
     public function index($request, $response, $args)
     {
-        $ssr_sub_token = LinkController::GenerateSSRSubCode($this->user->id, 0);
+        $ssr_sub_token = LinkController::GenerateSSRSubCode($this->user->id);
 
         $GtSdk = null;
         $recaptcha_sitekey = null;
@@ -635,6 +637,68 @@ class UserController extends BaseController
         return $this->echoJson($response, $res);
     }
 
+    public function updateEmail($request, $response, $args)
+    {
+        $user = $this->user;
+        $newemail = $request->getParam('newemail');
+        $oldemail = $user->email;
+        $otheruser = User::where('email', $newemail)->first();
+        if ($_ENV['enable_telegram'] !== true) {
+            $res['ret'] = 0;
+            $res['msg'] = '未啓用用戶自行修改郵箱功能';
+            return $response->getBody()->write(json_encode($res));
+        }
+        if (Config::getconfig('Register.bool.Enable_email_verify')) {
+            $emailcode = $request->getParam('emailcode');
+            $mailcount = EmailVerify::where('email', '=', $newemail)->where('code', '=', $emailcode)->where('expire_in', '>', time())->first();
+            if ($mailcount == null) {
+                $res['ret'] = 0;
+                $res['msg'] = '您的邮箱验证码不正确';
+                return $response->getBody()->write(json_encode($res));
+            }
+        }
+        if ($newemail == '') {
+            $res['ret'] = 0;
+            $res['msg'] = '未填写邮箱';
+            return $response->getBody()->write(json_encode($res));
+        }
+        if (!Check::isEmailLegal($newemail)) {
+            $res['ret'] = 0;
+            $res['msg'] = '邮箱无效';
+            return $response->getBody()->write(json_encode($res));
+        }
+        if ($otheruser != null) {
+            $res['ret'] = 0;
+            $res['msg'] = '邮箱已经被使用了';
+            return $response->getBody()->write(json_encode($res));
+        }
+        if ($newemail == $oldemail) {
+            $res['ret'] = 0;
+            $res['msg'] = '新邮箱不能和旧邮箱一样';
+            return $response->getBody()->write(json_encode($res));
+        }
+        $antiXss = new AntiXSS();
+        $user->email = $antiXss->xss_clean($newemail);
+        $user->save();
+
+        $res['ret'] = 1;
+        $res['msg'] = '修改成功';
+        return $this->echoJson($response, $res);
+    }
+
+    public function updateUsername($request, $response, $args)
+    {
+        $newusername = $request->getParam('newusername');
+        $user = $this->user;
+        $antiXss = new AntiXSS();
+        $user->user_name = $antiXss->xss_clean($newusername);
+        $user->save();
+
+        $res['ret'] = 1;
+        $res['msg'] = '修改成功';
+        return $this->echoJson($response, $res);
+    }
+
     public function updateHide($request, $response, $args)
     {
         $hide = $request->getParam('hide');
@@ -803,7 +867,7 @@ class UserController extends BaseController
             $shop_item = Shop::where('id',$order['shopid'])->first();
             $shop_item = json_decode($shop_item['content']);
             $shop_item->datetime = $order['datetime'];
-            if (array_key_exists('reset',$shop_item) || array_key_exists('reset_value',$shop_item) || array_key_exists('reset_exp',$shop_item))
+            if (property_exists($shop_item,'reset') || property_exists($shop_item,'reset_value') || property_exists($shop_item,'reset_exp'))
             {
                 if (time() < ($shop_item->datetime + $shop_item->reset_exp * 86400) ) {
                     $res['ret'] = 0;
@@ -1412,9 +1476,6 @@ class UserController extends BaseController
             case 'ssr':
                 $return .= URL::get_NewAllUrl($user, ['type' => 'ssr']) . PHP_EOL;
                 break;
-            case 'ssd':
-                $return .= LinkController::getSSD($user, 1, [], ['type' => 'ss']) . PHP_EOL;
-                break;
             case 'v2ray':
                 $return .= URL::get_NewAllUrl($user, ['type' => 'vmess']) . PHP_EOL;
                 break;
@@ -1471,7 +1532,7 @@ class UserController extends BaseController
     public function getPcClient($request, $response, $args)
     {
         $zipArc = new \ZipArchive();
-        $user_token = LinkController::GenerateSSRSubCode($this->user->id, 0);
+        $user_token = LinkController::GenerateSSRSubCode($this->user->id);
         $type = trim($request->getQueryParams()['type']);
         // 临时文件存放路径
         $temp_file_path = BASE_PATH . '/storage/';
@@ -1481,10 +1542,6 @@ class UserController extends BaseController
             case 'ss-win':
                 $user_config_file_name = 'gui-config.json';
                 $content = ClientProfiles::getSSPcConf($this->user);
-                break;
-            case 'ssd-win':
-                $user_config_file_name = 'gui-config.json';
-                $content = ClientProfiles::getSSDPcConf($this->user);
                 break;
             case 'ssr-win':
                 $user_config_file_name = 'gui-config.json';

@@ -13,7 +13,6 @@ table tr td:first-child {
 </style>
 
 <main class="content">
-
     <div class="content-header ui-content-header">
         <div class="container">
             <h1 class="content-heading">用户中心</h1>
@@ -145,21 +144,16 @@ table tr td:first-child {
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="ui-card-wrap">
-
                 <div class="col-xx-12 col-sm-5">
-
                     <div class="card">
                         <div class="card-main">
                         <div class="card-inner margin-bottom-no">
                             <p class="card-heading" style="margin-bottom: 0;"><i class="icon icon-md">account_circle</i>流量使用情况</p>
-
                                 {if $user->valid_use_loop() != '未购买套餐.'}
                                 <p>下次流量重置时间：{$user->valid_use_loop()}</p>
                                 {/if}
-
                                 <div class="progressbar">
                                     <div class="before"></div>
                                     <div class="bar tuse color3"
@@ -200,23 +194,17 @@ table tr td:first-child {
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                             <div class="card-inner margin-bottom-no">
                                 <p class="card-heading"><i class="icon icon-md">account_circle</i> 签到</p>
-
                                     <p>上次签到时间：{$user->lastCheckInTime()}</p>
-
                                     <p id="checkin-msg"></p>
-
                                     {if $geetest_html != null}
                                         <div id="popup-captcha"></div>
                                     {/if}
                                     {if $recaptcha_sitekey != null && $user->isAbleToCheckin()}
                                         <div class="g-recaptcha" data-sitekey="{$recaptcha_sitekey}"></div>
                                     {/if}
-
                                     <div class="card-action">
                                         <div class="usercheck pull-left">
                                             {if $user->isAbleToCheckin() }
@@ -235,10 +223,8 @@ table tr td:first-child {
                                     </div>
                                 </dl>
                             </div>
-
                         </div>
                     </div>
-
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner margin-bottom-no">
@@ -263,18 +249,14 @@ table tr td:first-child {
                             </div>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="col-xx-12 col-sm-7">
-
                     <div class="card quickadd">
                         <div class="card-main">
                             <div class="card-inner">
                                 <div class="cardbtn-edit">
                                     <div class="card-heading"><i class="icon icon-md">phonelink</i> 快速使用</div>
                                 </div>
-
 								<nav class="tab-nav margin-top-no">
 									<ul class="nav nav-list">
 										<li class="active">
@@ -285,15 +267,11 @@ table tr td:first-child {
 										</li>
 									</ul>
 								</nav>
-
 								<div class="card-inner">
 									<div class="tab-content">
-
 										<div class="tab-pane fade" id="info_center">
 											<p>您的链接信息：</p>
-
 											{if URL::SSRCanConnect($user)}
-
 												{$user = URL::getSSRConnectInfo($pre_user)}
                                                 <table class="table">
                                                     <tbody>
@@ -326,9 +304,7 @@ table tr td:first-child {
 												<hr/>
 												<p>您好，您目前的 加密方式，混淆或协议 适用于 SSR 客户端，请您选用支持 SSR 的客户端来连接，或者到 <a href="/user/edit">资料编辑</a> 页面修改后再来查看此处。</p>
                                                 <p>同时, ShadowsocksR 单端口多用户的连接不受您设置的影响，您可以在此使用相应的客户端进行连接</p>
-
 											{elseif URL::SSCanConnect($user)}
-
                                                 {$user = URL::getSSConnectInfo($pre_user)}
                                                 <table class="table">
                                                     <tbody>
@@ -357,15 +333,10 @@ table tr td:first-child {
 												<hr/>
                                                 <p>您好，您目前的 加密方式，混淆或协议 适用于 SS 客户端，请您选用支持 SS 协议的客户端来连接，或者到 <a href="/user/edit">资料编辑</a> 页面修改后再来查看此处。</p>
                                                 <p>同时, Shadowsocks 单端口多用户的连接不受您设置的影响，您可以在此使用相应的客户端进行连接</p>
-
                                             {else}
-
                                                 <p>您的账户连接信息存在异常，请联系管理员</p>
-
 											{/if}
-
 										</div>
-
 										<div class="tab-pane fade active in" id="sub_center">
 											<nav class="tab-nav margin-top-no">
 												<ul class="nav nav-list">
@@ -392,8 +363,6 @@ table tr td:first-child {
 													</li>
 												</ul>
 											</nav>
-
-
                                             {function name=printClient items=null}
                                                 {foreach $items as $item}
                                                     <hr/>
@@ -429,8 +398,6 @@ table tr td:first-child {
                                                     </p>
                                                 {/foreach}
                                             {/function}
-
-
 											<div class="tab-pane fade active in" id="sub_center_general">
 												<p>此处为通用订阅，适用于多种应用的订阅，如您使用的客户端不在各平台列举的名单中则在此使用订阅服务.</p>
                                                 <hr/>
@@ -455,7 +422,6 @@ table tr td:first-child {
 													<a class="copy-text btn-dl" data-clipboard-text="{$subInfo['clash']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>
 												</p>
 											</div>
-
 											<div class="tab-pane fade" id="sub_center_windows">
 												<p><span class="icon icon-lg text-white">filter_1</span> SS - [ SS ]：</p>
 													<p>
@@ -472,26 +438,8 @@ table tr td:first-child {
                                                         使用方式：
                                                         <a id="win_ss" class="copy-config btn-dl" onclick=Copyconfig("/user/getUserAllURL?type=ss","#win_ss","")><i class="material-icons icon-sm">send</i> 拷贝全部节点 URL</a>
                                                     </p>
-												<hr/>
-												<p><span class="icon icon-lg text-white">filter_2</span> SSD - [ SS ]：</p>
-													<p>
-                                                        应用下载：
-                                                        <a class="btn-dl" href="{if $config["subscribe_client"]===true}{if $config["subscribe_client_url"]==''}/user/getPcClient{else}{$config["subscribe_client_url"]}/getClient/{$getClient}{/if}?type=ssd-win{else}/ssr-download/ssd-win.7z{/if}"><i class="material-icons icon-sm">cloud_download</i> 本站下载【高速】</a>
-                                                        .
-                                                        <a class="btn-dl" href="https://github.com/CGDF-Github/SSD-Windows/releases"><i class="material-icons icon-sm">cloud_download</i> 官方下载</a>
-                                                    </p>
-                                                    <p>
-                                                        使用教程：
-                                                        <a class="btn-dl" href="{if $config['use_this_doc'] === false}/user/tutorial{else}/doc/#/Windows/ShadowsocksD{/if}"><i class="material-icons icon-sm">turned_in_not</i> 点击查看</a>
-                                                    </p>
-													<p>
-                                                        使用方式：
-                                                        <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssd']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>
-                                                        .
-                                                        <a id="win_ssd" class="copy-config btn-dl" onclick=Copyconfig("/user/getUserAllURL?type=ssd","#win_ssd","")><i class="material-icons icon-sm">send</i> 拷贝全部节点 URL</a>
-                                                    </p>
-												<hr/>
-												<p><span class="icon icon-lg text-white">filter_3</span> SSR(R) - [ SS/SSR ]：</p>
+												<hr/>											
+												<p><span class="icon icon-lg text-white">filter_2</span> SSR(R) - [ SS/SSR ]：</p>
 													<p>
                                                         应用下载：
                                                         <a class="btn-dl" href="{if $config["subscribe_client"]===true}{if $config["subscribe_client_url"]==''}/user/getPcClient{else}{$config["subscribe_client_url"]}/getClient/{$getClient}{/if}?type=ssr-win{else}/ssr-download/ssr-win.7z{/if}"><i class="material-icons icon-sm">cloud_download</i> 本站下载【高速】</a>
@@ -509,8 +457,7 @@ table tr td:first-child {
                                                         <a id="win_ssr" class="copy-config btn-dl" onclick=Copyconfig("/user/getUserAllURL?type=ssr","#win_ssr","")><i class="material-icons icon-sm">send</i> 拷贝全部节点 URL</a>
                                                     </p>
 												<hr/>
-
-												<p><span class="icon icon-lg text-white">filter_4</span> SSTap - [ SS/SSR ]：</p>
+												<p><span class="icon icon-lg text-white">filter_3</span> SSTap - [ SS/SSR ]：</p>
 													<p>
                                                         应用下载：
                                                         <a class="btn-dl" href="/ssr-download/SSTap.7z"><i class="material-icons icon-sm">cloud_download</i> 本站下载【高速】</a>
@@ -524,8 +471,7 @@ table tr td:first-child {
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssr']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>
                                                     </p>
 												<hr/>
-
-												<p><span class="icon icon-lg text-white">filter_5</span> V2RayN - [ SS/VMess ]：</p>
+												<p><span class="icon icon-lg text-white">filter_4</span> V2RayN - [ SS/VMess ]：</p>
 													<p>
                                                         应用下载：
                                                         <a class="btn-dl" href="{if $config["subscribe_client"]===true}{if $config["subscribe_client_url"]==''}/user/getPcClient{else}{$config["subscribe_client_url"]}/getClient/{$getClient}{/if}?type=v2rayn-win{else}/ssr-download/v2rayn.zip{/if}"><i class="material-icons icon-sm">cloud_download</i> 本站下载【高速】</a>
@@ -543,7 +489,7 @@ table tr td:first-child {
                                                         <a id="win_v2rayn" class="copy-config btn-dl" onclick=Copyconfig("/user/getUserAllURL?type=v2ray","#win_v2rayn","")><i class="material-icons icon-sm">send</i> 拷贝全部节点 URL</a>
                                                     </p>
 												<hr/>
-												<p><span class="icon icon-lg text-white">filter_6</span> Clash for Windows - [ SS/VMess/Trojan ]：</p>
+												<p><span class="icon icon-lg text-white">filter_5</span> Clash for Windows - [ SS/VMess/Trojan ]：</p>
 													<p>
                                                         应用下载：
                                                         <a class="btn-dl" href="/ssr-download/Clash-Windows.7z"><i class="material-icons icon-sm">cloud_download</i> 本站下载【高速】</a>
@@ -561,7 +507,7 @@ table tr td:first-child {
                                                         <a class="btn-dl" href="clash://install-config?url={urlencode($subInfo['clash'])}"><i class="material-icons icon-sm">send</i> 配置一键导入</a>
                                                     </p>
                                             	<hr/>
-												<p><span class="icon icon-lg text-white">filter_7</span> ClashR for Windows - [ SS/SSR/VMess ]：</p>
+												<p><span class="icon icon-lg text-white">filter_6</span> ClashR for Windows - [ SS/SSR/VMess ]：</p>
 													<p>
                                                         应用下载：
                                                         <a class="btn-dl" href="#"><i class="material-icons icon-sm">cloud_download</i> 暂无下载</a>
@@ -582,7 +528,6 @@ table tr td:first-child {
                                                 {/if}
                                             {/if}
 											</div>
-
 											<div class="tab-pane fade" id="sub_center_mac">
 												<p><span class="icon icon-lg text-white">filter_1</span> Surge - [ SS/VMess ]：</p>
 													<p>
@@ -685,7 +630,6 @@ table tr td:first-child {
                                                 {/if}
                                             {/if}
 											</div>
-
 											<div class="tab-pane fade" id="sub_center_ios">
 											{if $display_ios_class>=0}
 												{if $user->class>=$display_ios_class && $user->get_top_up()>=$display_ios_topup}
@@ -819,7 +763,6 @@ table tr td:first-child {
                                                 {/if}
                                             {/if}
 											</div>
-
 											<div class="tab-pane fade" id="sub_center_android">
 												<p><span class="icon icon-lg text-white">filter_1</span> SS - [ SS ]：</p>
 												    <p>该客户端仅 v5.0 以上版本支持订阅，如您未找到订阅配置之处，请尝试升级客户端.</p>
@@ -841,30 +784,8 @@ table tr td:first-child {
                                                         使用方式：
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssa']}"><i class="material-icons icon-sm">send</i> 拷贝该应用专属订阅链接</a>
                                                     </p>
-												<hr/>
-												<p><span class="icon icon-lg text-white">filter_2</span> SSD - [ SS ]：</p>
-													<p>
-                                                        应用下载：
-                                                        <a class="btn-dl" href="/ssr-download/ssd-android.apk"><i class="material-icons icon-sm">cloud_download</i> 本站下载【高速】</a>
-                                                        .
-                                                        <a class="btn-dl" href="https://github.com/CGDF-Github/SSD-Android/releases"><i class="material-icons icon-sm">cloud_download</i> 官方下载</a>
-                                                    </p>
-													<p>
-                                                        插件下载：
-                                                        <a class="btn-dl" href="/ssr-download/ss-android-obfs.apk"><i class="material-icons icon-sm">cloud_download</i> 「必须」obfs 插件本站下载【高速】</a>
-                                                    </p>
-                                                    <p>
-                                                        使用教程：
-                                                        <a class="btn-dl" href="{if $config['use_this_doc'] === false}/user/tutorial{else}/doc/#/Android/ShadowsocksD{/if}"><i class="material-icons icon-sm">turned_in_not</i> 点击查看</a>
-                                                    </p>
-													<p>
-                                                        使用方式：
-                                                        <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssd']}"><i class="material-icons icon-sm">send</i> 拷贝该应用专属订阅链接</a>
-                                                        .
-                                                        <a id="android_ssd" class="copy-config btn-dl" onclick=Copyconfig("/user/getUserAllURL?type=ssd","#android_ssd","")><i class="material-icons icon-sm">send</i> 拷贝全部节点 URL</a>
-                                                    </p>
-												<hr/>
-												<p><span class="icon icon-lg text-white">filter_3</span> SSR(R) - [ SSR ]：</p>
+												<hr/>												
+												<p><span class="icon icon-lg text-white">filter_2</span> SSR(R) - [ SSR ]：</p>
 													<p>
                                                         应用下载：
                                                         <a class="btn-dl" href="/ssr-download/ssr-android.apk"><i class="material-icons icon-sm">cloud_download</i> SSR 本站下载【高速】</a>
@@ -880,7 +801,7 @@ table tr td:first-child {
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssr']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>
                                                     </p>
 												<hr/>
-												<p><span class="icon icon-lg text-white">filter_4</span> V2RayNG - [ SS/VMess ]：</p>
+												<p><span class="icon icon-lg text-white">filter_3</span> V2RayNG - [ SS/VMess ]：</p>
 													<p>
                                                         应用下载：
                                                         <a class="btn-dl" href="/ssr-download/v2rayng.apk"><i class="material-icons icon-sm">cloud_download</i> 本站下载【高速】</a>
@@ -896,7 +817,7 @@ table tr td:first-child {
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['v2ray']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>
                                                     </p>
 												<hr/>
-												<p><span class="icon icon-lg text-white">filter_5</span> Surfboard - [ SS/VMess ]：</p>
+												<p><span class="icon icon-lg text-white">filter_4</span> Surfboard - [ SS/VMess ]：</p>
 												    <p>该客户端新版本支持 V2Ray 节点，如您遇到配置解析错误等情况，请尝试升级客户端.</p>
 													<p>
                                                         应用下载：
@@ -913,7 +834,7 @@ table tr td:first-child {
                                                         <a class="btn-dl" href="{$subInfo['surfboard']}"><i class="material-icons icon-sm">send</i> 配置文件下载</a>
                                                     </p>
 												<hr/>
-												<p><span class="icon icon-lg text-white">filter_6</span> Kitsunebi - [ SS/VMess ]：</p>
+												<p><span class="icon icon-lg text-white">filter_5</span> Kitsunebi - [ SS/VMess ]：</p>
 												    <p>该客户端专属订阅链接支持同时订阅 SS 和 V2Ray 节点.</p>
 													<p>
                                                         应用下载：
@@ -923,7 +844,6 @@ table tr td:first-child {
                                                         使用教程：
                                                         <a class="btn-dl" href="{if $config['use_this_doc'] === false}/user/tutorial{else}/doc/#/Android/Kitsunebi{/if}"><i class="material-icons icon-sm">turned_in_not</i> 点击查看</a>
                                                     </p>
-                                                    
 													<p>
                                                         使用方式：
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ss']}"><i class="material-icons icon-sm">send</i> 拷贝 SS 订阅链接</a>
@@ -931,12 +851,11 @@ table tr td:first-child {
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['kitsunebi']}"><i class="material-icons icon-sm">send</i> 拷贝该应用专属订阅链接</a>
                                                     </p>
                                                 <hr/>
-                                                    <p><span class="icon icon-lg text-white">filter_7</span> Clash for Android - [ SS/VMess ]：</p>
+                                                    <p><span class="icon icon-lg text-white">filter_6</span> Clash for Android - [ SS/VMess ]：</p>
 													<p>
                                                         应用下载：
                                                         <a class="btn-dl" href="https://play.google.com/store/apps/details?id=com.github.kr328.clash"><i class="material-icons icon-sm">cloud_download</i> Google Play 下载</a>
                                                     </p>
-
 													<p>
                                                         使用方式：
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['clash']}"><i class="material-icons icon-sm">send</i> 拷贝 Clash 订阅链接</a>
@@ -949,7 +868,6 @@ table tr td:first-child {
                                                 {/if}
                                             {/if}
 											</div>
-
 											<div class="tab-pane fade" id="sub_center_linux">
 												<p><span class="icon icon-lg text-white">filter_1</span> Electron SSR - [ SSR ]：</p>
 													<p>
@@ -970,7 +888,6 @@ table tr td:first-child {
                                                 {/if}
                                             {/if}
 											</div>
-
 											<div class="tab-pane fade" id="sub_center_router">
 												<p><span class="icon icon-lg text-white">filter_1</span> Koolshare 固件路由器/软路由：</p>
 													<p>
@@ -995,56 +912,40 @@ table tr td:first-child {
                                                 {/if}
                                             {/if}
 											</div>
-
 										</div>
-
 									</div>
 								</div>
-
                             </div>
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
             {include file='dialog.tpl'}
-
         </section>
     </div>
 </main>
 
-
 {include file='user/footer.tpl'}
 
 <script src="https://cdn.jsdelivr.net/npm/shake.js@1.2.2/shake.min.js"></script>
-
 <script>
-
     function DateParse(str_date) {
         var str_date_splited = str_date.split(/[^0-9]/);
         return new Date(str_date_splited[0], str_date_splited[1] - 1, str_date_splited[2], str_date_splited[3], str_date_splited[4], str_date_splited[5]);
     }
-
 </script>
-
 <script>
-
     $(function () {
-        new Clipboard('.copy-text');
+        new ClipboardJS('.copy-text');
     });
-
     $(".copy-text").click(function () {
         $("#result").modal();
         $$.getElementById('msg').innerHTML = '已复制，请您继续接下来的操作';
     });
-
     function AddSub(url,jumpurl="") {
 	    let tmp = window.btoa(url);
 	    window.location.href = jumpurl + tmp;
     }
-
     function Copyconfig(url,id,jumpurl="") {
         $.ajax({
             url: url,
@@ -1062,7 +963,7 @@ table tr td:first-child {
                }
             }
         });
-        const clipboard = new Clipboard('.copy-config', {
+        const clipboard = new ClipboardJS('.copy-config', {
             text: function() {
                 return $(id).data('data');
             }
@@ -1087,16 +988,13 @@ table tr td:first-child {
 			}
 	    );
     }
-
     {if $user->transfer_enable-($user->u+$user->d) == 0}
     window.onload = function () {
         $("#result").modal();
         $$.getElementById('msg').innerHTML = '您的流量已经用完或账户已经过期了，如需继续使用，请进入商店选购新的套餐~';
     };
     {/if}
-
     {if $geetest_html == null}
-
     var checkedmsgGE = '<p><a class="btn btn-brand disabled btn-flat waves-attach" href="#"><span class="icon">check</span>&nbsp;已签到</a></p>';
     window.onload = function () {
         var myShakeEvent = new Shake({
@@ -1138,7 +1036,6 @@ table tr td:first-child {
             });
         }
     };
-
     $(document).ready(function () {
         $("#checkin").click(function () {
             $.ajax({
@@ -1170,9 +1067,7 @@ table tr td:first-child {
             })
         })
     })
-
     {else}
-
     window.onload = function () {
         var myShakeEvent = new Shake({
             threshold: 15
@@ -1186,7 +1081,6 @@ table tr td:first-child {
             c.show();
         }
     };
-
     var handlerPopup = function (captchaObj) {
         c = captchaObj;
         captchaObj.onSuccess(function () {
@@ -1228,16 +1122,13 @@ table tr td:first-child {
         captchaObj.appendTo("#popup-captcha");
         // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
     };
-
     initGeetest({
         gt: "{$geetest_html->gt}",
         challenge: "{$geetest_html->challenge}",
         product: "popup", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
         offline: {if $geetest_html->success}0{else}1{/if} // 表示用户后台检测极验服务器是否宕机，与SDK配合，用户一般不需要关注
     }, handlerPopup);
-
     {/if}
-
 </script>
 
 {if $recaptcha_sitekey != null}

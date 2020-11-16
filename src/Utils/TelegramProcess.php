@@ -16,7 +16,6 @@ class TelegramProcess
         'clean_link' => '重置订阅',
         '?mu=0' => 'SSR普通订阅',
         '?mu=1' => 'SSR单端口订阅',
-        '?mu=3' => 'SS/SSD订阅',
         '?mu=2' => 'V2ray订阅',
         '?mu=4' => 'Clash订阅'];
 
@@ -30,7 +29,7 @@ class TelegramProcess
         if ($user != null) {
             switch (true) {
                 case (strpos($callback_data, 'mu')):
-                    $ssr_sub_token = LinkController::GenerateSSRSubCode($user->id, 0);
+                    $ssr_sub_token = LinkController::GenerateSSRSubCode($user->id);
                     $subUrl = $_ENV['subUrl'];
                     $reply_message = self::$all_rss[$callback_data] . ': ' . $subUrl . $ssr_sub_token . $callback_data . PHP_EOL;
                     break;

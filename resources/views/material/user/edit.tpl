@@ -8,9 +8,7 @@
     </div>
     <div class="container">
         <section class="content-inner margin-top-no">
-
             <div class="col-xx-12 col-sm-6">
-
                 <div class="card margin-bottom-no">
                     <div class="card-main">
                         <div class="card-inner">
@@ -19,7 +17,6 @@
                                     <div class="card-heading">节点连接密码修改</div>
                                     <button class="btn btn-flat" id="ss-pwd-update"><span class="icon">check</span>&nbsp;</button>
                                 </div>
-
                                 <p>当前连接密码：<code id="ajax-user-passwd">{$user->passwd}</code>
                                     <button class="kaobei copy-text btn btn-subscription" type="button" data-clipboard-text="{$user->passwd}">
                                         点击拷贝
@@ -37,18 +34,16 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="card margin-bottom-no">
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="card-inner">
                                 <div class="card-heading">选择客户端</div>
-                                <p>SS/SSD/SSR 支持的加密方式和混淆方式有所不同，请根据实际情况来进行选择</p>
+                                <p>SS/SSR 支持的加密方式和混淆方式有所不同，请根据实际情况来进行选择</p>
                                 <p>在这里选择你需要使用的客户端可以帮助你筛选加密方式和混淆方式</p>
                                 <p>auth_chain 系为实验性协议，可能造成不稳定或无法使用</p>
                                 <br>
-                                <button class="btn btn-subscription" type="button" id="filter-btn-ss">SS/SSD</button>
+                                <button class="btn btn-subscription" type="button" id="filter-btn-ss">SS</button>
                                 <button class="btn btn-subscription" type="button" id="filter-btn-ssr">SSR</button>
                                 <button class="btn btn-subscription" type="button" id="filter-btn-universal">通用</button>
                             </div>
@@ -58,7 +53,7 @@
                                     <button class="btn btn-flat" id="method-update"><span class="icon">check</span>&nbsp</button>
                                 </div>
                                 <p>
-                                    当前加密方式：<code id="ajax-user-method" data-default="method">[{if URL::CanMethodConnect($user->method) == 2}SS/SSD{else}SS/SSR{/if}可连接] {$user->method}</code>
+                                    当前加密方式：<code id="ajax-user-method" data-default="method">[{if URL::CanMethodConnect($user->method) == 2}SS{else}SS/SSR{/if}可连接] {$user->method}</code>
                                 </p>
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
                                     <label class="floating-label" for="method">加密方式</label>
@@ -70,20 +65,19 @@
                                             <li class="{if URL::CanMethodConnect($user->method) == 2}filter-item-ss{else}filter-item-universal{/if}">
                                                 <a href="#" class="dropdown-option" onclick="return false;"
                                                    val="{$method}"
-                                                   data="method">[{if URL::CanMethodConnect($method) == 2}SS/SSD{else}SS/SSR{/if}
+                                                   data="method">[{if URL::CanMethodConnect($method) == 2}SS{else}SS/SSR{/if}
                                                     可连接] {$method}</a>
                                             </li>
                                         {/foreach}
                                     </ul>
                                 </div>
                             </div>
-
                             <div class="card-inner">
                                 <div class="cardbtn-edit">
                                     <div class="card-heading">协议&混淆设置</div>
                                     <button class="btn btn-flat" id="ssr-update"><span class="icon">check</span>&nbsp;</button>
                                 </div>
-                                <p>当前协议：<code id="ajax-user-protocol" data-default="protocol">[{if URL::CanProtocolConnect($user->protocol) == 3}SS/SSD/SSR{else}SSR{/if}可连接] {$user->protocol}</code></p>
+                                <p>当前协议：<code id="ajax-user-protocol" data-default="protocol">[{if URL::CanProtocolConnect($user->protocol) == 3}SS/SSR{else}SSR{/if}可连接] {$user->protocol}</code></p>
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
                                     <label class="floating-label" for="protocol">协议</label>
                                     <button id="protocol" class="form-control maxwidth-edit" data-toggle="dropdown"
@@ -93,19 +87,17 @@
                                         {foreach $protocol_list as $protocol}
                                             <li class="{if URL::CanProtocolConnect($protocol) == 3}filter-item-universal{else}filter-item-ssr{/if}">
                                                 <a href="#" class="dropdown-option" onclick="return false;" val="{$protocol}" data="protocol">
-                                                    [{if URL::CanProtocolConnect($protocol) == 3}SS/SSD/SSR{else}SSR{/if}
+                                                    [{if URL::CanProtocolConnect($protocol) == 3}SS/SSR{else}SSR{/if}
                                                     可连接] {$protocol}
                                                 </a>
                                             </li>
                                         {/foreach}
                                     </ul>
                                 </div>
-
                             </div>
-
                             <div class="card-inner">
-                                <p>当前混淆方式：<code id="ajax-user-obfs" data-default="obfs">[{if URL::CanObfsConnect($user->obfs) >= 3}SS/SSD/SSR{elseif URL::CanObfsConnect($user->obfs) == 1}SSR{else}SS/SSD{/if}可连接] {$user->obfs}</code></p>
-                                <p>SS/SSD 和 SSR 支持的混淆类型有所不同，simple_obfs_* 为 SS/SSD 的混淆方式，其他为 SSR 的混淆方式</p>
+                                <p>当前混淆方式：<code id="ajax-user-obfs" data-default="obfs">[{if URL::CanObfsConnect($user->obfs) >= 3}SS/SSR{elseif URL::CanObfsConnect($user->obfs) == 1}SSR{else}SS{/if}可连接] {$user->obfs}</code></p>
+                                <p>SS 和 SSR 支持的混淆类型有所不同，simple_obfs_* 为 SS 的混淆方式，其他为 SSR 的混淆方式</p>
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
                                     <label class="floating-label" for="obfs">混淆方式</label>
                                     <button id="obfs" class="form-control maxwidth-edit" data-toggle="dropdown" value="{$user->obfs}"></button>
@@ -114,14 +106,13 @@
                                         {foreach $obfs_list as $obfs}
                                             <li class="{if URL::CanObfsConnect($obfs) >= 3}filter-item-universal{else}{if URL::CanObfsConnect($obfs) == 1}filter-item-ssr{else}filter-item-ss{/if}{/if}">
                                                 <a href="#" class="dropdown-option" onclick="return false;" val="{$obfs}" data="obfs">
-                                                    [{if URL::CanObfsConnect($obfs) >= 3}SS/SSD/SSR{else}{if URL::CanObfsConnect($obfs) == 1}SSR{else}SS/SSD{/if}{/if}可连接] {$obfs}
+                                                    [{if URL::CanObfsConnect($obfs) >= 3}SS/SSR{else}{if URL::CanObfsConnect($obfs) == 1}SSR{else}SS{/if}{/if}可连接] {$obfs}
                                                 </a>
                                             </li>
                                         {/foreach}
                                     </ul>
                                 </div>
                             </div>
-
                             <div class="card-inner">
                                 <p>当前混淆参数：<code id="ajax-user-obfs-param">{$user->obfs_param}</code></p>
                                 <div class="form-group form-group-label">
@@ -129,11 +120,9 @@
                                     <input class="form-control maxwidth-edit" id="obfs-param" type="text">
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
 				<div class="card margin-bottom-no">
 					<div class="card-main">
 						<div class="card-inner">
@@ -149,12 +138,57 @@
 						</div>
 					</div>
                 </div>
-
             </div>
-
-
             <div class="col-xx-12 col-sm-6">
-
+                {if $config['enable_change_email'] == true}
+                    <div class="card margin-bottom-no">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <div class="card-inner">
+                                    <div class="cardbtn-edit">
+                                        <div class="card-heading">账户邮箱修改</div>
+                                        <button class="btn btn-flat" id="email-update"><span class="icon">check</span>&nbsp;
+                                        </button>
+                                    </div>
+                                    <div class="form-group form-group-label">
+                                        <label class="floating-label" for="newemail">新邮箱</label>
+                                        <input class="form-control maxwidth-edit" id="newemail" type="text">
+                                    </div>
+                                    {if $config['enable_email_verify'] == true}
+                                        <div class="form-group form-group-label">
+                                            <label class="floating-label" for="email_code">邮箱验证码</label>
+                                            <input class="form-control maxwidth-auth" id="email_code" type="text"
+                                                onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;" autocomplete="one-time-code">
+                                        </div>
+                                        <div class="form-group form-group-label">
+                                            <button id="email_verify"
+                                                class="btn-reg btn btn-block btn-brand-accent waves-attach waves-light">
+                                                获取验证码
+                                            </button>
+                                        </div>
+                                    {/if}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {/if}
+                <div class="card margin-bottom-no">
+                    <div class="card-main">
+                        <div class="card-inner">
+                            <div class="card-inner">
+                                <div class="cardbtn-edit">
+                                    <div class="card-heading">用戶名修改</div>
+                                    <button class="btn btn-flat" id="username-update"><span class="icon">check</span>&nbsp;
+                                    </button>
+                                </div>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="newusername">新用戶名</label>
+                                    <input class="form-control maxwidth-edit" id="newusername" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card margin-bottom-no">
                     <div class="card-main">
                         <div class="card-inner">
@@ -168,22 +202,18 @@
                                     <label class="floating-label" for="oldpwd">当前密码</label>
                                     <input class="form-control maxwidth-edit" id="oldpwd" type="password">
                                 </div>
-
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="pwd">新密码</label>
                                     <input class="form-control maxwidth-edit" id="pwd" type="password">
                                 </div>
-
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="repwd">确认新密码</label>
                                     <input class="form-control maxwidth-edit" id="repwd" type="password">
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
                 <div class="card margin-bottom-no">
                     <div class="card-main">
                         <div class="card-inner">
@@ -194,12 +224,10 @@
                                     </button>
                                 </div>
                                 <p>当前状态：<code id="ajax-block">{$Block}</code></p>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="card margin-bottom-no">
                     <div class="card-main">
                         <div class="card-inner">
@@ -231,7 +259,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card margin-bottom-no">
                     <div class="card-main">
                         <div class="card-inner">
@@ -270,7 +297,6 @@
                                                data="imtype">Discord</a></li>
                                     </ul>
                                 </div>
-
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="wechat">在这输入联络方式账号</label>
                                     <input class="form-control maxwidth-edit" id="wechat" type="text">
@@ -279,7 +305,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card margin-bottom-no">
                     <div class="card-main">
                         <div class="card-inner">
@@ -307,20 +332,17 @@
                                                data="ga-enable">要求验证</a></li>
                                     </ul>
                                 </div>
-
                                 <div class="form-group form-group-label">
                                     <div class="text-center">
                                         <div id="ga-qr" class="qr-center"></div>
                                         密钥：{$user->ga_token}
                                     </div>
                                 </div>
-
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="code">测试一下</label>
                                     <input type="text" id="code" placeholder="输入验证器生成的数字来测试"
                                            class="form-control maxwidth-edit">
                                 </div>
-
                             </div>
                             <div class="card-action">
                                 <div class="card-action-btn pull-left">
@@ -336,7 +358,6 @@
                         </div>
                     </div>
                 </div>
-
                 {if $config['port_price']>=0 || $config['port_price_specify']>=0}
                     <div class="card margin-bottom-no">
                         <div class="card-main">
@@ -355,7 +376,6 @@
                                         <p>当前端口：<code id="ajax-user-port">{$user->port}</code></p>
                                     </div>
                                 {/if}
-
                                 {if $config['port_price_specify']>=0}
                                     <div class="card-inner">
                                         <div class="cardbtn-edit">
@@ -377,7 +397,6 @@
                         </div>
                     </div>
                 {/if}
-
                 {if $config['enable_telegram'] === true}
                     <div class="card margin-bottom-no">
                         <div class="card-main">
@@ -412,7 +431,6 @@
                         </div>
                     </div>
                 {/if}
-
                 <div class="card margin-bottom-no">
                     <div class="card-main">
                         <div class="card-inner">
@@ -426,7 +444,6 @@
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
                                     <label class="floating-label" for="theme">主题</label>
                                     <button id="theme" type="button" class="form-control maxwidth-edit" data-toggle="dropdown" value="{$user->theme}">
-
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="mail">
                                         {foreach $themes as $theme}
@@ -441,29 +458,23 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
                 {include file='dialog.tpl'}
-
         </section>
     </div>
 </main>
-
 
 {include file='user/footer.tpl'}
 
 <script>
     $(function () {
-        new Clipboard('.copy-text');
+        new ClipboardJS('.copy-text');
     });
-
     $(".copy-text").click(function () {
         $("#result").modal();
         $$.getElementById('msg').innerHTML = '已复制到您的剪贴板。';
     });
 </script>
-
 {literal}
 <script>
     /*
@@ -487,32 +498,27 @@
                 i.style.display = 'block';
             }
         };
-
         const chooseSS = () => {
             hideFilterItem('ssr');
             showFilterItem('ss');
             showFilterItem('universal');
         };
-
         const chooseSSR = () => {
             hideFilterItem('ss');
             showFilterItem('ssr');
             showFilterItem('universal');
         };
-
         const chooseUniversal = () => {
             hideFilterItem('ss');
             hideFilterItem('ssr');
             showFilterItem('universal');
         };
-
         $$.getElementById('filter-btn-ss').addEventListener('click', chooseSS);
         $$.getElementById('filter-btn-ssr').addEventListener('click', chooseSSR);
         $$.getElementById('filter-btn-universal').addEventListener('click', chooseUniversal);
     })();
 </script>
 {/literal}
-
 {literal}
 <script>
     $(document).ready(function () {
@@ -544,7 +550,6 @@
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         $("#portspecify").click(function () {
@@ -575,7 +580,6 @@
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         $("#setpac").click(function () {
@@ -600,7 +604,6 @@
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         $("#pwd-update").click(function () {
@@ -629,25 +632,121 @@
 </script>
 {/literal}
 <script>
+    $(document).ready(function () {
+        $("#username-update").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "username",
+                dataType: "json",
+                data: {
+                    newusername: $$getValue('newusername')
+                },
+                success: (data) => {
+                    $("#result").modal();
+                    $$.getElementById('msg').innerHTML = data.msg;
+                },
+                error: (jqXHR) => {
+                    $("#result").modal();
+                    $$.getElementById('msg').innerHTML = `${
+                        data.msg
+                    } 出现了一些错误`;
+                }
+            })
+        })
+    })
+</script>
+{if $config['enable_change_email'] == true}
+    <script>
+        $(document).ready(function () {
+            $("#email-update").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "email",
+                    dataType: "json",
+                    data: {
+                        {if $config['enable_email_verify'] == true}
+                            emailcode: $$getValue('email_code'),
+                        {/if}
+                        newemail: $$getValue('newemail')
+                    },
+                    success: (data) => {
+                        $("#result").modal();
+                        $$.getElementById('msg').innerHTML = data.msg;
+                    },
+                    error: (jqXHR) => {
+                        $("#result").modal();
+                        $$.getElementById('msg').innerHTML = `${
+                            data.msg
+                        } 出现了一些错误`;
+                    }
+                })
+            })
+        })
+    </script>
+    {if $config['enable_email_verify'] == true}
+        <script>
+            var wait = 60;
+            function time(o) {
+                if (wait == 0) {
+                    o.removeAttr("disabled");
+                    o.text("获取验证码");
+                    wait = 60;
+                } else {
+                    o.attr("disabled", "disabled");
+                    o.text("重新发送(" + wait + ")");
+                    wait--;
+                    setTimeout(function () {
+                        time(o)
+                    },
+                    1000)
+                }
+            }
+            $(document).ready(function () {
+                $("#email_verify").click(function () {
+                    time($("#email_verify"));
+                    $.ajax({
+                        type: "POST",
+                        url: "send",
+                        dataType: "json",
+                        data: {
+                            email: $$getValue('newemail')
+                        },
+                        success: (data) => {
+                            if (data.ret) {
+                                $("#result").modal();
+                                $$.getElementById('msg').innerHTML = data.msg;
+                            } else {
+                                $("#result").modal();
+                                $$.getElementById('msg').innerHTML = data.msg;
+                            }
+                        },
+                        error: (jqXHR) => {
+                            $("#result").modal();
+                            $$.getElementById('msg').innerHTML = `${
+                                data.msg
+                            } 出现了一些错误`;
+                        }
+                    })
+                })
+            })
+        </script>
+    {/if}
+{/if}
+<script>
     var ga_qrcode = '{$user->getGAurl()}',
             qrcode1 = new QRCode(document.getElementById("ga-qr"));
 
     qrcode1.clear();
     qrcode1.makeCode(ga_qrcode);
-
     {if $config['enable_telegram'] === true}
-
     var telegram_qrcode = 'mod://bind/{$bind_token}';
-
     if ($$.getElementById("telegram-qr")) {
         let qrcode2 = new QRCode(document.getElementById("telegram-qr"));
         qrcode2.clear();
         qrcode2.makeCode(telegram_qrcode);
     }
-
     {/if}
 </script>
-
 {literal}
 <script>
     $(document).ready(function () {
@@ -678,7 +777,6 @@
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         $("#ssr-update").click(function () {
@@ -711,7 +809,6 @@
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         $("#relay-update").click(function () {
@@ -735,7 +832,6 @@
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         $("#unblock").click(function () {
@@ -766,7 +862,6 @@
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         $("#ga-test").click(function () {
@@ -789,7 +884,6 @@
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         $("#ga-set").click(function () {
@@ -812,7 +906,6 @@
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         let newsspwd = Math.random().toString(36).substr(2);
@@ -873,7 +966,6 @@
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         $("#theme-update").click(function () {
@@ -905,7 +997,6 @@
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         $("#method-update").click(function () {
@@ -936,12 +1027,10 @@
         })
     })
 </script>
-
 {/literal}
-
 <script>
     $(function () {
-        new Clipboard('.reset-link');
+        new ClipboardJS('.reset-link');
     });
     $(".reset-link").click(function () {
         $("#result").modal();

@@ -1,6 +1,8 @@
 {include file='user/main.tpl'}
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sukka/markdown.css">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 <style>
 .tile-sub div {
     padding: 16px;
@@ -66,15 +68,12 @@ Tab 负责控制 SSR / SS / V2Ray 的容器的切换。Tab 条目位于 ul.nav.n
             <h1 class="content-heading">使用教程</h1>
         </div>
     </div>
-
     <div class="container">
         <section class="content-inner margin-top-no">
             <div class="ui-card-wrap">
-
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-main">
-
                             <div class="card-inner">
                                 <nav class="tab-nav margin-top-no">
                                     <ul class="nav nav-list">
@@ -82,16 +81,14 @@ Tab 负责控制 SSR / SS / V2Ray 的容器的切换。Tab 条目位于 ul.nav.n
                                             <a class="" data-toggle="tab" href="#tutorial_ssr"><i class="icon icon-lg">airplanemode_active</i>&nbsp;SSR</a>
                                         </li>
                                         <li>
-                                            <a class="" data-toggle="tab" href="#tutorial_ss"><i class="icon icon-lg">flight_takeoff</i>&nbsp;SS/SSD</a>
+                                            <a class="" data-toggle="tab" href="#tutorial_ss"><i class="icon icon-lg">flight_takeoff</i>&nbsp;SS</a>
                                         </li>
                                         <li>
                                             <a class="" data-toggle="tab" href="#tutorial_v2ray"><i class="icon icon-lg">flight_land</i>&nbsp;V2RAY</a>
                                         </li>
                                     </ul>
                                 </nav>
-
                                 <div class="tab-pane fade active in page-course" id="tutorial_ssr">
-
                                     <div class="tile tile-collapse">
                                         <div data-toggle="tile" data-target="#tutorial-heading-ssrwin">
                                             <div class="tile-inner">
@@ -227,26 +224,8 @@ Tab 负责控制 SSR / SS / V2Ray 的容器的切换。Tab 条目位于 ul.nav.n
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                                 <div class="tab-pane fade page-course" id="tutorial_ss">
-
-                                    <div class="tile tile-collapse">
-                                        <div data-toggle="tile" data-target="#tutorial-heading-ssdwin">
-                                            <div class="tile-inner">
-                                                <div class="text-overflow">ShadowsocksD Windows</div>
-                                            </div>
-                                        </div>
-                                        <div class="collapsible-region collapse" id="tutorial-heading-ssdwin">
-                                            <div class="tile-sub markdown-body">
-                                                <div id="tutorial-ssdwin-content"></div>
-                                                <script>
-                                                    document.getElementById('tutorial-ssdwin-content').innerHTML = marked(`{include file='user/markdown/ssd-windows.md'}`);
-                                                </script>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="tile tile-collapse">
                                         <div data-toggle="tile" data-target="#tutorial-heading-ssxng">
                                             <div class="tile-inner">
@@ -278,21 +257,6 @@ Tab 负责控制 SSR / SS / V2Ray 的容器的切换。Tab 条目位于 ul.nav.n
                                         </div>
                                     </div>
                                     <div class="tile tile-collapse">
-                                        <div data-toggle="tile" data-target="#tutorial-heading-ssd-android">
-                                            <div class="tile-inner">
-                                                <div class="text-overflow">ShadowsocksD Android</div>
-                                            </div>
-                                        </div>
-                                        <div class="collapsible-region collapse" id="tutorial-heading-ssd-android">
-                                            <div class="tile-sub markdown-body">
-                                                <div id="tutorial-ssd-android-content"></div>
-                                                <script>
-                                                    document.getElementById('tutorial-ssd-android-content').innerHTML = marked(`{include file='user/markdown/ssd-android.md'}`);
-                                                </script>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tile tile-collapse">
                                         <div data-toggle="tile" data-target="#tutorial-heading-router-ss">
                                             <div class="tile-inner">
                                                 <div class="text-overflow">Merlin & Padavan</div>
@@ -307,11 +271,8 @@ Tab 负责控制 SSR / SS / V2Ray 的容器的切换。Tab 条目位于 ul.nav.n
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                                 <div class="tab-pane fade page-course" id="tutorial_v2ray">
-
                                     <div class="tile tile-collapse">
                                         <div data-toggle="tile" data-target="#tutorial-heading-v2rayn">
                                             <div class="tile-inner">
@@ -342,26 +303,15 @@ Tab 负责控制 SSR / SS / V2Ray 的容器的切换。Tab 条目位于 ul.nav.n
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
-
                     {include file='dialog.tpl'}
-
                 </div>
-
-
             </div>
         </section>
     </div>
 </main>
 
-
 {include file='user/footer.tpl'}
-
-
-
