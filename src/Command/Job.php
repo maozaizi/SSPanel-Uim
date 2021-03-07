@@ -235,11 +235,8 @@ class Job extends Command
     {
         //在线人数检测
         $users = User::where('node_connector', '>', 0)->get();
-
         $full_alive_ips = Ip::where('datetime', '>=', time() - 60)->orderBy('ip')->get();
-
         $alive_ipset = array();
-
         foreach ($full_alive_ips as $full_alive_ip) {
             $full_alive_ip->ip = Tools::getRealIp($full_alive_ip->ip);
             $is_node = Node::where('node_ip', $full_alive_ip->ip)->first();
@@ -322,7 +319,7 @@ class Job extends Command
         }
 
         //自动续费
-        $boughts = Bought::where('renew', '<', time())->where('renew', '<>', 0)->get();
+        $boughts = Bought::where('renew', '<', time() + 60)->where('renew', '<>', 0)->get();
         foreach ($boughts as $bought) {
             /** @var Bought $bought */
             $user = $bought->user();
@@ -766,7 +763,7 @@ class Job extends Command
         $datatables = new DatatablesHelper();
         $datatables->query(
             'DELETE FROM `relay` WHERE `source_node_id` NOT IN(' . $allNodeID . ') OR `dist_node_id` NOT IN(' . $allNodeID . ')'
-        );
+        );       
     }
 
     /**
