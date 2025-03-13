@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定义全局样式 */
+@layer base {
+  body {
+    @apply bg-light text-dark;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+  
+  h1 {
+    @apply text-3xl mb-4;
+  }
+  
+  h2 {
+    @apply text-2xl mb-3;
+  }
+  
+  h3 {
+    @apply text-xl mb-2;
+  }
+}
+
+/* 自定义组件样式 */
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded font-medium shadow-btn transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white hover:shadow-hover;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-white hover:shadow-hover;
+  }
+  
+  .btn-success {
+    @apply bg-success text-white hover:shadow-hover;
+  }
+  
+  .btn-danger {
+    @apply bg-danger text-white hover:shadow-hover;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-card p-4 mb-4;
+  }
+  
+  .form-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+} 
